@@ -1,0 +1,30 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  3.0.x                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      foamDefinerDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Patch describing moving interface
+foamSurfacePatch	"reactingWall";
+
+// Define which between void and solid has to be adjusted
+voidFraction		true;
+
+// Target void fraction
+epsiTarget 			0.90;
+
+// Fraction of error on epsi used to define displacement
+fractionMove 		0.1;
+
+
+// *********************************************************************** //
