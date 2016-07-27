@@ -64,20 +64,20 @@ int main(int argc, char *argv[])
 	(
 		mesh.objectRegistry::lookupObject<pointVectorField>
 		(
-				"pointDisplacement"
+			"pointDisplacement"
 		)
 	);
 			
 	while (runTime.loop())
    	{
 		Info<< "Time = " << runTime.timeName() << endl;
-		
+
 		vectorField& pointPosition = refCast<vectorField>(displacement.boundaryField()[patchID]);
 		vectorField pointNormal   = mesh.boundaryMesh()[patchID].pointNormals();
 
-        //Find the relevant size of the vector and declare a vectorField.
-        label size = pointPosition.size();
-        vectorField dispPoints(size);
+		//Find the relevant size of the vector and declare a vectorField.
+		label size = pointPosition.size();
+		vectorField dispPoints(size);
 
 		// Evaluate total volume of the bouding box
 		const boundBox& box = mesh.bounds();
@@ -87,8 +87,8 @@ int main(int argc, char *argv[])
 
 		// Evaluate mesh volume
 		const scalarField& vol = mesh.V();
-        scalar meshVolume = gSum(vol); 
-		
+		scalar meshVolume = gSum(vol); 
+
 		// Evaluate void fraction
 		scalar voidFrac = 0.0;
 		if( fractionType_ )
@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
 		displacement.boundaryField()[patchID] == dispPoints;
 					
 		// Update mesh points
-        mesh.update();
+		mesh.update();
  
 		if( checkMesh_ )
 		{ 
@@ -144,7 +144,7 @@ int main(int argc, char *argv[])
 		epsiError = (voidFrac - epsiTarget_) / epsiTarget_;
 
 		const scalarField& Ap = mesh.magSf().boundaryField()[patchID];
-        scalar patchArea = gSum(Ap);
+		scalar patchArea = gSum(Ap);
 				
 		Info << endl;
 		Info << "Foam geometrical properties: " << endl;
